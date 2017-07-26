@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView result;
     StringBuilder  biaodashi ;
+    int flag_dian = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,35 +116,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 result.setText(biaodashi);
                 break;
             case R.id.dian:
-                biaodashi.append(".");
-                result.setText(biaodashi);
+                if(flag_dian == 0){
+                    biaodashi.append(".");
+                    result.setText(biaodashi);
+                    flag_dian = 1;
+                }
+
                 break;
             case R.id.jia:
                 biaodashi.append("+");
                 result.setText(biaodashi);
+                flag_dian = 0;
                 break;
             case R.id.jian:
                 biaodashi.append("-");
                 result.setText(biaodashi);
+                flag_dian = 0;
                 break;
             case R.id.cheng:
                 biaodashi.append("x");
                 result.setText(biaodashi);
+                flag_dian = 0;
                 break;
             case R.id.chu:
                 biaodashi.append("÷");
                 result.setText(biaodashi);
+                flag_dian = 0;
                 break;
             case R.id.youkuohao:
                 biaodashi.append(")");
                 result.setText(biaodashi);
+                flag_dian = 0;
                 break;
             case R.id.zuokuohao:
                 biaodashi.append("(");
                 result.setText(biaodashi);
+                flag_dian = 0;
                 break;
             case R.id.dengyu:
-
+                flag_dian = 0;
                 if(kuohaopibei()&&biaodashi.length()>0){
                     String ss = calculate();
                     biaodashi = biaodashi.deleteCharAt(0);
@@ -162,11 +173,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.qingchu:
+                flag_dian = 0;
                 result.setText("");
                 biaodashi = new StringBuilder();
                 break;
             case R.id.shanchu:
+
                 if(biaodashi.length()>0){
+                    if(biaodashi.charAt(biaodashi.length()-1) == '.'){
+                        flag_dian = 0;
+                    }
                     biaodashi.deleteCharAt(biaodashi.length()-1);
                     result.setText(biaodashi);
                 }
