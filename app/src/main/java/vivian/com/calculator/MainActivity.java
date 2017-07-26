@@ -323,12 +323,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             &&string.charAt(q) !='.';q++);
                     int pert = 1;
                     int qq = q-1;
-                    double dou = 0;
+                    int dou = 0;
                     for(;qq>=i;qq--){
-                        dou = dou+string.charAt(qq)-48*pert;
+                        dou = dou+(string.charAt(qq)-48)*pert;
                         pert*=10;
                     }
-                    doubleStack.push(dou);
+                    doubleStack.push((double)dou);
                     i = q-1;
                     Log.d("default",String.valueOf(dou));
                     Log.d("default_doublesize",String.valueOf(doubleStack.size()));
