@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Stack<String> stringStack = new Stack<>();
         Stack<Double> doubleStack = new Stack<>();
         String string = "";
-        
+
         biaodashi.insert(0,"(");
         biaodashi.append(")");
         Log.d("biaodashi",biaodashi.toString());
@@ -289,8 +289,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
                 case '.':
                     char previcen = string.charAt(i-1);
-                    if(previcen < 48 || previcen >57){
-                        if(i!=1&&(previcen == '.' || previcen == ')'||previcen == '(')){
+                    char prepre = 'c';
+                    if(i>=2){
+                        prepre = string.charAt(i-2);
+                    }
+                    if(previcen < 48 || previcen >57 || prepre == '.'){
+                        if((i!=1&&(previcen == '.' || previcen == ')'||previcen == '('))||(prepre == '.')){
                             return "输入的表达式有错误";
                         }
                         doubleStack.push(0d);
@@ -335,7 +339,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         }
-
+            if(doubleStack.size() !=1){
+                return "输入的表达式有问题";
+            }
             double res = doubleStack.pop();
             BigDecimal bg = new BigDecimal(res);
             double resul = bg.setScale(4,BigDecimal.ROUND_HALF_UP).doubleValue();
@@ -395,7 +401,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            }
 
            Log.d("calu",String.valueOf(strings.size()));
-
 
        }
 
