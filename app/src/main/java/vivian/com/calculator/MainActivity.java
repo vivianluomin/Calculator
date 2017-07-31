@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 case '÷':
                     Log.d("+++",tt+"    "+ttt);
-                        if(tt>=48&&tt<=57&&(ttt>=48&&ttt<=57||ttt == '('||ttt=='-')) {
+                        if((tt>=48&&tt<=57||tt==')')&&(ttt>=48&&ttt<=57||ttt == '('||ttt=='-')) {
 
                             p = provity(temp);
                             if (p > provity) {
